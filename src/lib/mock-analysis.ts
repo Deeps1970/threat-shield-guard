@@ -7,7 +7,7 @@ export interface AnalysisResult {
   indicators: string[];
   explanation: string;
   recommendation: string;
-  domain?: string;
+  domain?: string | undefined;
   input: string;
   kind: "message" | "url" | "screenshot";
 }
@@ -137,7 +137,7 @@ export function analyzeMessage(text: string): AnalysisResult {
     indicators,
     explanation,
     recommendation,
-    domain: urls.length ? extractDomain(urls[0]) : undefined,
+    domain: urls[0] ? extractDomain(urls[0]) : undefined,
     input: text,
     kind: "message",
   };
