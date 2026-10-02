@@ -1,24 +1,43 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { AnalysisInput } from "@/components/AnalysisInput";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "ThoondilGuard — Check before you click" },
+      {
+        name: "description",
+        content:
+          "Free privacy-focused phishing and fraud detection. Analyze suspicious messages, links and screenshots instantly — no signup required.",
+      },
+      { property: "og:title", content: "ThoondilGuard — Check before you click" },
+      {
+        property: "og:description",
+        content:
+          "Analyze suspicious messages, links and screenshots for phishing and fraud. Free, no account needed.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main className="mx-auto max-w-2xl px-4 py-10 sm:py-16">
+      <div className="text-center">
+        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Check before you click.</h1>
+        <p className="mt-3 text-sm text-muted-foreground sm:text-base">
+          Analyze suspicious messages, links and screenshots for phishing and fraud.
+        </p>
+      </div>
+      <div className="mt-8">
+        <AnalysisInput />
+      </div>
+      <p className="mt-4 text-center text-xs text-muted-foreground">
+        Free forever. No account. Your input is analyzed locally in this prototype.
+      </p>
+    </main>
   );
 }
