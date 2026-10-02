@@ -10,33 +10,91 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as IntelligenceRouteImport } from './routes/intelligence'
+import { Route as ReportRouteImport } from './routes/report'
+import { Route as ResultRouteImport } from './routes/result'
+import { Route as ScreenshotRouteImport } from './routes/screenshot'
+import { Route as UrlRouteImport } from './routes/url'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IntelligenceRoute = IntelligenceRouteImport.update({
+  id: '/intelligence',
+  path: '/intelligence',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportRoute = ReportRouteImport.update({
+  id: '/report',
+  path: '/report',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResultRoute = ResultRouteImport.update({
+  id: '/result',
+  path: '/result',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ScreenshotRoute = ScreenshotRouteImport.update({
+  id: '/screenshot',
+  path: '/screenshot',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UrlRoute = UrlRouteImport.update({
+  id: '/url',
+  path: '/url',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/intelligence': typeof IntelligenceRoute
+  '/report': typeof ReportRoute
+  '/result': typeof ResultRoute
+  '/screenshot': typeof ScreenshotRoute
+  '/url': typeof UrlRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/intelligence': typeof IntelligenceRoute
+  '/report': typeof ReportRoute
+  '/result': typeof ResultRoute
+  '/screenshot': typeof ScreenshotRoute
+  '/url': typeof UrlRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/intelligence': typeof IntelligenceRoute
+  '/report': typeof ReportRoute
+  '/result': typeof ResultRoute
+  '/screenshot': typeof ScreenshotRoute
+  '/url': typeof UrlRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/intelligence' | '/report' | '/result' | '/screenshot' | '/url'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/intelligence' | '/report' | '/result' | '/screenshot' | '/url'
+  id:
+    | '__root__'
+    | '/'
+    | '/intelligence'
+    | '/report'
+    | '/result'
+    | '/screenshot'
+    | '/url'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  IntelligenceRoute: typeof IntelligenceRoute
+  ReportRoute: typeof ReportRoute
+  ResultRoute: typeof ResultRoute
+  ScreenshotRoute: typeof ScreenshotRoute
+  UrlRoute: typeof UrlRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +106,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/intelligence': {
+      id: '/intelligence'
+      path: '/intelligence'
+      fullPath: '/intelligence'
+      preLoaderRoute: typeof IntelligenceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/report': {
+      id: '/report'
+      path: '/report'
+      fullPath: '/report'
+      preLoaderRoute: typeof ReportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/result': {
+      id: '/result'
+      path: '/result'
+      fullPath: '/result'
+      preLoaderRoute: typeof ResultRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/screenshot': {
+      id: '/screenshot'
+      path: '/screenshot'
+      fullPath: '/screenshot'
+      preLoaderRoute: typeof ScreenshotRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/url': {
+      id: '/url'
+      path: '/url'
+      fullPath: '/url'
+      preLoaderRoute: typeof UrlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  IntelligenceRoute: IntelligenceRoute,
+  ReportRoute: ReportRoute,
+  ResultRoute: ResultRoute,
+  ScreenshotRoute: ScreenshotRoute,
+  UrlRoute: UrlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

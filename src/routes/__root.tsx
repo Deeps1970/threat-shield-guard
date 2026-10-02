@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { Header } from "../components/Header";
 
 function NotFoundComponent() {
   return (
@@ -78,14 +79,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "ThoondilGuard — Check before you click" },
+      {
+        name: "description",
+        content:
+          "Free privacy-focused phishing and fraud detection. Analyze suspicious messages, links and screenshots instantly.",
+      },
+      { property: "og:title", content: "ThoondilGuard — Check before you click" },
+      {
+        property: "og:description",
+        content:
+          "Free privacy-focused phishing and fraud detection. Analyze suspicious messages, links and screenshots instantly.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary" },
     ],
     links: [
       {
@@ -120,8 +127,16 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div className="flex min-h-screen flex-col">
+        <Header />
+        <div className="flex-1">
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+        </div>
+        <footer className="border-t border-border py-6 text-center text-xs text-muted-foreground">
+          ThoondilGuard — free, privacy-focused threat detection. Prototype with sample data.
+        </footer>
+      </div>
     </QueryClientProvider>
   );
 }
