@@ -14,6 +14,7 @@ import { Route as AlertsRouteImport } from './routes/alerts'
 import { Route as ExtensionRouteImport } from './routes/extension'
 import { Route as IntelligenceRouteImport } from './routes/intelligence'
 import { Route as PortalRouteImport } from './routes/portal'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ReportRouteImport } from './routes/report'
 import { Route as ReportSubmittedRouteImport } from './routes/report-submitted'
 import { Route as ResultRouteImport } from './routes/result'
@@ -45,6 +46,11 @@ const IntelligenceRoute = IntelligenceRouteImport.update({
 const PortalRoute = PortalRouteImport.update({
   id: '/portal',
   path: '/portal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ReportRoute = ReportRouteImport.update({
@@ -89,6 +95,7 @@ export interface FileRoutesByFullPath {
   '/extension': typeof ExtensionRoute
   '/intelligence': typeof IntelligenceRoute
   '/portal': typeof PortalRoute
+  '/privacy': typeof PrivacyRoute
   '/report': typeof ReportRoute
   '/report-submitted': typeof ReportSubmittedRoute
   '/result': typeof ResultRoute
@@ -103,6 +110,7 @@ export interface FileRoutesByTo {
   '/extension': typeof ExtensionRoute
   '/intelligence': typeof IntelligenceRoute
   '/portal': typeof PortalRoute
+  '/privacy': typeof PrivacyRoute
   '/report': typeof ReportRoute
   '/report-submitted': typeof ReportSubmittedRoute
   '/result': typeof ResultRoute
@@ -118,6 +126,7 @@ export interface FileRoutesById {
   '/extension': typeof ExtensionRoute
   '/intelligence': typeof IntelligenceRoute
   '/portal': typeof PortalRoute
+  '/privacy': typeof PrivacyRoute
   '/report': typeof ReportRoute
   '/report-submitted': typeof ReportSubmittedRoute
   '/result': typeof ResultRoute
@@ -134,6 +143,7 @@ export interface FileRouteTypes {
     | '/extension'
     | '/intelligence'
     | '/portal'
+    | '/privacy'
     | '/report'
     | '/report-submitted'
     | '/result'
@@ -148,6 +158,7 @@ export interface FileRouteTypes {
     | '/extension'
     | '/intelligence'
     | '/portal'
+    | '/privacy'
     | '/report'
     | '/report-submitted'
     | '/result'
@@ -162,6 +173,7 @@ export interface FileRouteTypes {
     | '/extension'
     | '/intelligence'
     | '/portal'
+    | '/privacy'
     | '/report'
     | '/report-submitted'
     | '/result'
@@ -177,6 +189,7 @@ export interface RootRouteChildren {
   ExtensionRoute: typeof ExtensionRoute
   IntelligenceRoute: typeof IntelligenceRoute
   PortalRoute: typeof PortalRoute
+  PrivacyRoute: typeof PrivacyRoute
   ReportRoute: typeof ReportRoute
   ReportSubmittedRoute: typeof ReportSubmittedRoute
   ResultRoute: typeof ResultRoute
@@ -220,6 +233,13 @@ declare module '@tanstack/react-router' {
       path: '/portal'
       fullPath: '/portal'
       preLoaderRoute: typeof PortalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/report': {
@@ -291,6 +311,7 @@ const rootRouteChildren: RootRouteChildren = {
   ExtensionRoute: ExtensionRoute,
   IntelligenceRoute: IntelligenceRoute,
   PortalRoute: PortalRoute,
+  PrivacyRoute: PrivacyRoute,
   ReportRoute: ReportRoute,
   ReportSubmittedRoute: ReportSubmittedRoute,
   ResultRoute: ResultRoute,
